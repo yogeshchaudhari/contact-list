@@ -1,4 +1,8 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+
+import ContactList from './ContactList';
+import ContactDetails from './ContactDetails';
 
 class Application extends Component{
     constructor(props) {
@@ -15,12 +19,17 @@ class Application extends Component{
             <div>
                 <div>
                     <div style={{float:"left", width:"25%", overflowY:"scroll", height:height}}>
+                        <ContactList />
                     </div>
                     <div style={{float:"left", width:"75%"}}>
+                        <ContactDetails />
                     </div>
                 </div>
             </div>
         );
     }
 }
-export default Application;
+const mapStateToProps = (state) => {
+    return state;
+};
+export default connect(mapStateToProps)(Application);
