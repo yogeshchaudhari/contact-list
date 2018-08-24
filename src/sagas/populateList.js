@@ -1,7 +1,7 @@
 import { put, takeLatest } from 'redux-saga/effects';
 
 function* populateListSaga() {
-    yield takeLatest("POPULATE_LIST", fetchList);
+    yield takeLatest("POPULATE_LIST_REQUEST", fetchList);
 }
 
 function* fetchList(action) {

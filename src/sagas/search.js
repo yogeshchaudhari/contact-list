@@ -2,7 +2,7 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 
 function* searchSaga() {
-    yield takeLatest("SEARCH", updateSearch);
+    yield takeLatest("SEARCH_REQUEST", updateSearch);
 }
 
 function* updateSearch(action) {

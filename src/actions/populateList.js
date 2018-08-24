@@ -1,7 +1,7 @@
 export const populateList = (url = null) => {
     return {
-        type: "POPULATE_LIST",
+        type: "POPULATE_LIST_REQUEST",
         url,
-        jsonData: []
+        jsonData : []
     }
 }

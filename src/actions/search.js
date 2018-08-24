@@ -1,6 +1,6 @@
 export const search = (searchTerm = "") => {
     return {
-        type: "SEARCH",
+        type: "SEARCH_REQUEST",
         searchTerm
     }
 }
