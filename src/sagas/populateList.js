@@ -6,7 +6,16 @@ function* populateListSaga() {
 
 function* fetchList(action) {
     try{
-        let list = [{"name": "test"},{"name": "test"},{"name": "test"}];
+        let url = 'http://localhost:3000/contacts.json';
+        if(action.url)
+            url = action.url;
+        let list = yield fetch(url)
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(list) {
+                return list;
+            });
         yield put({type: "POPULATE_LIST", jsonData: list});
     }
     catch(e){
