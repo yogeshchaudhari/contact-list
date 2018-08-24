@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import ContactList from './ContactList';
 import ContactDetails from './ContactDetails';
 
+import { populateList } from "../actions/populateList";
+
 class Application extends Component{
     constructor(props) {
         super(props);
@@ -11,7 +13,10 @@ class Application extends Component{
     }
 
     componentWillMount(){
-        this.setState({height: window.innerHeight + 'px'});
+    this.setState({height: window.innerHeight + 'px'});
+    }
+    componentDidMount(){
+        this.props.didMount();
     }
     render(){
         let height = this.state.height;
@@ -32,4 +37,13 @@ class Application extends Component{
 const mapStateToProps = (state) => {
     return state;
 };
-export default connect(mapStateToProps)(Application);
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        didMount: () => {
+            dispatch(
+                populateList()
+            );
+        }
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Application);

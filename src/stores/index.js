@@ -1,8 +1,11 @@
-import { createStore, combineReducers} from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import createSagaMiddleware from 'redux-saga'
 
 import ListReducer from "./reducers/listReducer";
 import SearchReducer from "./reducers/searchReducer";
 import SelectReducer from "./reducers/selectReducer";
+
+import rootSaga from '../sagas/root';
 
 const rootReducer = combineReducers({
     contactList     : ListReducer,
@@ -10,4 +13,8 @@ const rootReducer = combineReducers({
     selectedContact : SelectReducer
 });
 
-export default createStore(rootReducer);
+const sagaMiddleware = createSagaMiddleware();
+
+export default createStore(rootReducer, applyMiddleware(sagaMiddleware));
+
+sagaMiddleware.run(rootSaga);
