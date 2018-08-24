@@ -6,7 +6,7 @@ function* searchSaga() {
 }
 
 function* updateSearch(action) {
-    yield call(delay, 3000);
+    yield call(delay, 1000);
     yield put({type:"SEARCH", searchTerm: action.searchTerm});
 }
 
