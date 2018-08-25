@@ -1,20 +1,26 @@
-# **Introduction **
+# **Introduction**
 This application is used for rendering contacts which are stored in a file using various NodeJs packages like ReactJs, React-Redux, Redux-Saga, Material UI, etc.
 
 # **Getting Started**
 To Install the required packages run the command
-    'npm install'
+```
+    npm install
+```
   Once the packages are installed, the application is ready for testing and running
 
 # **Tests**
 Tests cases have been added for testing the Reducers as well as UI Components.
 The framework used for testing is Jest.
 All the test cases can be executed by running the command
-    'npm test'
+```
+    npm test
+```
 
 # **Running the Application**
 Application can be started using the command
-    'npm start'
+```    
+    npm start
+```
 When the command is executed, a react server starts locally which listens on the port 3000.
 A new browser window should automatically open at the url "http://localhost:3000"
 
