@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import { Avatar, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import Email from '@material-ui/icons/Email';
 import Phone from '@material-ui/icons/Phone';
 import Location from '@material-ui/icons/LocationOnSharp';
