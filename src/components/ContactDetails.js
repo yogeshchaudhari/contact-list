@@ -4,13 +4,18 @@ import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import { Typography } from '@material-ui/core';
+import { Typography, CardHeader, IconButton } from '@material-ui/core';
 import Email from '@material-ui/icons/Email';
 import Phone from '@material-ui/icons/Phone';
 import Location from '@material-ui/icons/LocationOnSharp';
+import CloseIcon from '@material-ui/icons/Close';
+
+import {hideContact} from '../actions/hideContact';
 
 class ContactDetails extends Component{
-
+    state = {
+        showDetails : false
+    }
     render(){
         let {contactList, selectedContactId} = this.props;
         let selectedContact = contactList.filter((contact)=>{
@@ -27,8 +32,12 @@ class ContactDetails extends Component{
         return(
             <div style={{marginLeft: "5%", marginTop: "5%"}}>
                 {
-                    selectedContact?
+                    selectedContact && this.props.showContact?
                     <Card style={{width:"90%"}}>
+                        <CardHeader action={ 
+                            <IconButton onClick={this.props.onCloseClick}>
+                                <CloseIcon/>
+                            </IconButton>}/>
                         <CardContent>
                             <CardMedia style={{width:"128px", height:"128px"}} image={selectedContact.general.avatar} />
                         </CardContent>
@@ -61,7 +70,15 @@ class ContactDetails extends Component{
 const mapStateToProps = (state, ownProps) => {
     return({
         selectedContactId: state.selectedContact.id,
-        contactList: state.contactList
+        contactList: state.contactList,
+        showContact: state.selectedContact.showContact
     });
 }
-export default connect(mapStateToProps)(ContactDetails);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onCloseClick : () => {
+            dispatch(hideContact());
+        }
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(ContactDetails);

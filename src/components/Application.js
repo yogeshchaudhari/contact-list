@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import withWidth, { isWidthDown } from '@material-ui/core/withWidth';
+
+import Grid from '@material-ui/core/Grid';
 
 import ContactList from './ContactList';
 import ContactDetails from './ContactDetails';
@@ -19,18 +22,19 @@ class Application extends Component{
         this.props.didMount();
     }
     render(){
+        let style = {};
+        if(isWidthDown('md', this.props.width))
+            style = {"position": "absolute"}
         let height = this.state.height;
         return(
-            <div>
-                <div>
-                    <div style={{float:"left", width:"25%", overflowY:"scroll", height:height}}>
-                        <ContactList />
-                    </div>
-                    <div style={{float:"left", width:"75%"}}>
-                        <ContactDetails />
-                    </div>
-                </div>
-            </div>
+            <Grid container spacing={0}>
+                <Grid style={{overflowY:"scroll", height: height}} item sm={12} md={3}>
+                    <ContactList />
+                </Grid>
+                <Grid style={style} item sm={12} md={9}>
+                    <ContactDetails />
+                </Grid>
+            </Grid>
         );
     }
 }
@@ -46,4 +50,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         }
     };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Application);
+export default connect(mapStateToProps, mapDispatchToProps)(withWidth()(Application));

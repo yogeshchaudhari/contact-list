@@ -18,7 +18,7 @@ class ContactList extends Component{
         if(this.props.searchResult.filteredContacts)
             contacts = this.props.searchResult.filteredContacts;
         return(
-            <div>
+            <div >
                 <div>
                     <SearchBar />
                 </div>
