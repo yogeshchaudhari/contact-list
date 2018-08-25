@@ -57,8 +57,8 @@ Whenever a search term is typed, the contacts are filtered and sorted according 
 Contacts list and contact details are rendered using the components provided by Material UI.
 
 ## **Compatibility**
-The UI of the application is responsive. The contacts can be accessed and viewed on small as well as large screen.
+The UI of the application is responsive. The contacts can be accessed and viewed on small as well as large screen. Just the basic responsiveness have been implemented and it can be improved.
 
 # **Todos**
  - UI beautification
- - Refactoring the Responsive css
+ - Improvement in the Responsive css
