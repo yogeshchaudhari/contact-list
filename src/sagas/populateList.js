@@ -14,7 +14,17 @@ function* fetchList(action) {
                 return response.json();
             })
             .then(function(list) {
-                return list;
+                return list.sort((contact1, contact2) => {
+                    let name1 = contact1.general.firstName.toUpperCase();
+                    let name2 = contact2.general.firstName.toUpperCase();
+                    if (name1 < name2) {
+                        return -1;
+                      }
+                      if (name1 > name2) {
+                        return 1;
+                      }
+                      return 0;
+                });
             });
         yield put({type: "POPULATE_LIST", jsonData: list});
     }
