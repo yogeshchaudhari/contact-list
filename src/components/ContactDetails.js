@@ -12,6 +12,8 @@ import CloseIcon from '@material-ui/icons/Close';
 
 import {hideContact} from '../actions/hideContact';
 
+import './ContactDetails.css';
+
 class ContactDetails extends Component{
     state = {
         showDetails : false
@@ -30,28 +32,28 @@ class ContactDetails extends Component{
             selectedContact = null;
         
         return(
-            <div style={{marginLeft: "5%", marginTop: "5%"}}>
+            <div className="mainContainer">
                 {
                     selectedContact && this.props.showContact?
-                    <Card style={{width:"90%"}}>
+                    <Card className="cardBody">
                         <CardHeader action={ 
                             <IconButton onClick={this.props.onCloseClick}>
                                 <CloseIcon/>
                             </IconButton>}/>
                         <CardContent>
-                            <CardMedia style={{width:"128px", height:"128px"}} image={selectedContact.general.avatar} />
+                            <CardMedia className="contactImage" image={selectedContact.general.avatar} />
                         </CardContent>
                         <CardContent>
                             <Typography variant="headline" gutterBottom>{fullName}</Typography>
                             <Typography variant="title" gutterBottom>{selectedContact.job.title + " - " + selectedContact.job.company}</Typography>
                             <br/>
                             <Phone />
-                            <a href={"tel:" + selectedContact.contact.phone} style={{textDecoration:"none"}}>
+                            <a href={"tel:" + selectedContact.contact.phone} className="linkStyle" >
                                 <Typography>{selectedContact.contact.phone}</Typography>
                             </a>
                             <br/>
                             <Email />
-                            <a href={"mailto:" + selectedContact.contact.email} style={{textDecoration:"none"}}>
+                            <a href={"mailto:" + selectedContact.contact.email} className="linkStyle" >
                                 <Typography>{selectedContact.contact.email}</Typography>
                             </a>
                             <br/>

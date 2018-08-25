@@ -1,0 +1,14 @@
+.mainContainer {
+    margin-left: 5%;
+    margin-top: 5%;
+}
+.cardBody {
+    width: 90%;
+}
+.contactImage {
+    width: 128px; 
+    height: 128px;
+}
+.linkStyle {
+    text-decoration: none;
+}

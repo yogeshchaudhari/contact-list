@@ -9,6 +9,8 @@ import ContactDetails from './ContactDetails';
 
 import { populateList } from "../actions/populateList";
 
+import './Application.css';
+
 class Application extends Component{
     constructor(props) {
         super(props);
@@ -22,16 +24,16 @@ class Application extends Component{
         this.props.didMount();
     }
     render(){
-        let style = {};
+        let className = "";
         if(isWidthDown('md', this.props.width))
-            style = {"position": "absolute"}
+            className = "detailsMedia"
         let height = this.state.height;
         return(
             <Grid container spacing={0}>
-                <Grid style={{overflowY:"scroll", height: height}} item sm={12} md={3}>
+                <Grid className="listScroll" style={{height}} item sm={12} md={3}>
                     <ContactList />
                 </Grid>
-                <Grid style={style} item sm={12} md={9}>
+                <Grid className={className} item sm={12} md={9}>
                     <ContactDetails />
                 </Grid>
             </Grid>

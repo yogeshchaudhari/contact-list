@@ -5,6 +5,8 @@ import { search } from '../../actions/search';
 import { InputAdornment } from '@material-ui/core';
 import Search from '@material-ui/icons/Search';
 
+import './SearchBar.css';
+
 class SearchBar extends Component{
     handleSearchTermChange = (event) => {
         let term = event.target.value;
@@ -12,9 +14,9 @@ class SearchBar extends Component{
     }
     render(){
         return(
-            <div style={{paddingLeft: "5%", paddingTop:"5%"}}>
+            <div className="searchContainer">
                 <Input 
-                    style={{width:"80%"}}
+                    className="inputStyle"
                     type="search" 
                     placeholder="Search" 
                     startAdornment={
