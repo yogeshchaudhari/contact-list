@@ -6,6 +6,10 @@ import { InputAdornment } from '@material-ui/core';
 import Search from '@material-ui/icons/Search';
 
 class SearchBar extends Component{
+    handleSearchTermChange = (event) => {
+        let term = event.target.value;
+        this.props.onSearchChange(term, this.props.contactList);
+    }
     render(){
         return(
             <div style={{paddingLeft: "5%", paddingTop:"5%"}}>
@@ -18,18 +22,23 @@ class SearchBar extends Component{
                             <Search />
                         </InputAdornment>
                     }
-                    onChange={this.props.onSearchChange}/>
+                    onChange={this.handleSearchTermChange}/>
             </div>
         );
     }
 }
+const mapStateToProps = (state, ownProps) => {
+    return({
+        contactList: state.contactList
+    });
+}
 const mapDispatchToProps = (dispatch, ownProps) => {
     return{
-        onSearchChange :(event) => {
+        onSearchChange :(searchTerm, contactList) => {
             dispatch(
-                search(event.target.value)
+                search(searchTerm, contactList)
             );
         }
     };
 }
-export default connect(null, mapDispatchToProps)(SearchBar);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

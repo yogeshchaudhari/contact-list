@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import * as JsSearch from 'js-search';
 
 import List from '@material-ui/core/List';
 import Item from './contactList/Item';
@@ -14,21 +13,10 @@ class ContactList extends Component{
             )
         })
     }
-    filterContacts = () => {
-        if(!this.props.searchTerm || this.props.searchTerm === '')
-            return this.props.contactList;
-        var search = new JsSearch.Search('id');
-        search.indexStrategy = new JsSearch.AllSubstringsIndexStrategy();
-        search.addIndex(['general', 'firstName']);
-        search.addIndex(['general', 'lastName']);
-        search.addIndex(['job', 'company']);
-        search.addIndex(['job', 'title']);
-        search.addIndex(['contact', 'email']);
-        search.addDocuments(this.props.contactList);
-        return search.search(this.props.searchTerm);
-    }
     render(){
-        let contacts = this.filterContacts();
+        let contacts = this.props.contactList;
+        if(this.props.searchResult.filteredContacts)
+            contacts = this.props.searchResult.filteredContacts;
         return(
             <div>
                 <div>

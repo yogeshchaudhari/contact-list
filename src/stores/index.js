@@ -9,7 +9,7 @@ import rootSaga from '../sagas/root';
 
 const rootReducer = combineReducers({
     contactList     : ListReducer,
-    searchTerm      : SearchReducer,
+    searchResult    : SearchReducer,
     selectedContact : SelectReducer
 });
 
