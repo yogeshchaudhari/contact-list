@@ -1,11 +1,9 @@
-const SearchReducer = (state = {searchTerm: "", filteredContacts:undefined}, action) => {
+const SearchReducer = (state = {searchTerm: ""}, action) => {
     switch(action.type){
         case "SEARCH":
-            let newState = {searchTerm: "", filteredContacts:undefined}
+            let newState = {searchTerm: ""}
             if(action.searchTerm)
                 newState.searchTerm = action.searchTerm;
-            if(action.filteredContacts)
-                newState.filteredContacts = action.filteredContacts;
             return newState;
         default:
             return state;
