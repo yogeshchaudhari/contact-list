@@ -5,6 +5,8 @@ import List from '@material-ui/core/List';
 import Item from './contactList/Item';
 import SearchBar from './contactList/SearchBar';
 
+import {getFilteredList} from '../stores/reducers';
+
 class ContactList extends Component{
     renderContacts = (contacts) => {
         return contacts.map((contact) => {
@@ -14,9 +16,6 @@ class ContactList extends Component{
         })
     }
     render(){
-        let contacts = this.props.contactList;
-        if(this.props.searchResult.filteredContacts)
-            contacts = this.props.searchResult.filteredContacts;
         return(
             <div >
                 <div>
@@ -24,7 +23,7 @@ class ContactList extends Component{
                 </div>
                 <div>
                     <List>
-                        {this.renderContacts(contacts)}
+                        {this.renderContacts(this.props.filteredContactList)}
                     </List>
                 </div>
             </div>
@@ -32,6 +31,8 @@ class ContactList extends Component{
     }
 }
 const mapStateToProps = (state, ownProps) => {
-    return state;
+    return {
+        filteredContactList : getFilteredList(state)
+    };
 }
 export default connect(mapStateToProps)(ContactList);
