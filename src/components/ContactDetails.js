@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
+import { withStyles } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -11,8 +12,6 @@ import Location from '@material-ui/icons/LocationOnSharp';
 import CloseIcon from '@material-ui/icons/Close';
 
 import {hideContact} from '../actions/hideContact';
-
-import './ContactDetails.css';
 
 class ContactDetails extends Component{
     state = {
@@ -30,30 +29,31 @@ class ContactDetails extends Component{
         }
         else
             selectedContact = null;
+        let classes = this.props.classes;
         
         return(
-            <div className="mainContainer">
+            <div className={classes.mainContainer}>
                 {
                     selectedContact && this.props.showContact?
-                    <Card className="cardBody">
+                    <Card className={classes.cardBody}>
                         <CardHeader action={ 
                             <IconButton onClick={this.props.onCloseClick}>
                                 <CloseIcon/>
                             </IconButton>}/>
                         <CardContent>
-                            <CardMedia className="contactImage" image={selectedContact.general.avatar} />
+                            <CardMedia className={classes.contactImage} image={selectedContact.general.avatar} />
                         </CardContent>
                         <CardContent>
                             <Typography variant="headline" gutterBottom>{fullName}</Typography>
                             <Typography variant="title" gutterBottom>{selectedContact.job.title + " - " + selectedContact.job.company}</Typography>
                             <br/>
                             <Phone />
-                            <a href={"tel:" + selectedContact.contact.phone} className="linkStyle" >
+                            <a href={"tel:" + selectedContact.contact.phone} className={classes.linkStyle} >
                                 <Typography>{selectedContact.contact.phone}</Typography>
                             </a>
                             <br/>
                             <Email />
-                            <a href={"mailto:" + selectedContact.contact.email} className="linkStyle" >
+                            <a href={"mailto:" + selectedContact.contact.email} className={classes.linkStyle} >
                                 <Typography>{selectedContact.contact.email}</Typography>
                             </a>
                             <br/>
@@ -79,4 +79,20 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = {
     onCloseClick : hideContact
 }
-export default connect(mapStateToProps,mapDispatchToProps)(ContactDetails);
+const styles = {
+    mainContainer : {
+        marginLeft: "5%",
+        marginTop: "5%"
+    },
+    cardBody : {
+        width: "90%"
+    },
+    contactImage : {
+        width: "128px",
+        height: "128px"
+    },
+    linkStyle : {
+        textDecoration: "none"
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(withStyles(styles)(ContactDetails));

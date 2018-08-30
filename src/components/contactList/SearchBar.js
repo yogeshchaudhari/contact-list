@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+
+import { withStyles } from '@material-ui/core';
 import Input from '@material-ui/core/Input';
-import { search } from '../../actions/search';
 import { InputAdornment } from '@material-ui/core';
 import Search from '@material-ui/icons/Search';
 
-import './SearchBar.css';
+import { search } from '../../actions/search';
 
 class SearchBar extends Component{
     handleSearchTermChange = (event) => {
@@ -14,9 +15,9 @@ class SearchBar extends Component{
     }
     render(){
         return(
-            <div className="searchContainer">
+            <div className={this.props.classes.searchContainer}>
                 <Input 
-                    className="inputStyle"
+                    className={this.props.classes.inputStyle}
                     type="search" 
                     placeholder="Search" 
                     startAdornment={
@@ -37,4 +38,14 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = {
     onSearchChange : search
 }
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
+
+const styles = {
+    searchContainer : {
+        paddingLeft: "5%",
+        paddingTop: "5%"
+    },
+    inputStyle : {
+        width: "80%"
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(SearchBar));
