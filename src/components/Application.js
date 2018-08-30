@@ -40,16 +40,7 @@ class Application extends Component{
         );
     }
 }
-const mapStateToProps = (state) => {
-    return state;
+const mapDispatchToProps = {
+    didMount: populateList
 };
-const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-        didMount: () => {
-            dispatch(
-                populateList()
-            );
-        }
-    };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(withWidth()(Application));
+export default connect(null, mapDispatchToProps)(withWidth()(Application));

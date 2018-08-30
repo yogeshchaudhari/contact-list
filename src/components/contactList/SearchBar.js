@@ -34,13 +34,7 @@ const mapStateToProps = (state, ownProps) => {
         contactList: state.contactList
     });
 }
-const mapDispatchToProps = (dispatch, ownProps) => {
-    return{
-        onSearchChange :(searchTerm, contactList) => {
-            dispatch(
-                search(searchTerm, contactList)
-            );
-        }
-    };
+const mapDispatchToProps = {
+    onSearchChange : search
 }
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

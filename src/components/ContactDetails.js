@@ -76,11 +76,7 @@ const mapStateToProps = (state, ownProps) => {
         showContact: state.selectedContact.showContact
     });
 }
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onCloseClick : () => {
-            dispatch(hideContact());
-        }
-    }
+const mapDispatchToProps = {
+    onCloseClick : hideContact
 }
 export default connect(mapStateToProps,mapDispatchToProps)(ContactDetails);
