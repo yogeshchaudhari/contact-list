@@ -3,11 +3,7 @@ import * as JsSearch from 'js-search';
 const ListReducer = (state = [], action) => {
     switch(action.type){
         case "POPULATE_LIST":
-            let id = 0;
-            return action.jsonData.map(contact => {
-                contact.id = id++;
-                return contact;
-            });
+            return action.jsonData;
         default:
             return state;
     }

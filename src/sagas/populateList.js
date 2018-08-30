@@ -14,17 +14,9 @@ function* fetchList(action) {
                 return response.json();
             })
             .then(function(list) {
-                return list.sort((contact1, contact2) => {
-                    let name1 = contact1.general.firstName.toUpperCase();
-                    let name2 = contact2.general.firstName.toUpperCase();
-                    if (name1 < name2) {
-                        return -1;
-                      }
-                      if (name1 > name2) {
-                        return 1;
-                      }
-                      return 0;
-                });
+                let sortedList = getSortedList(list);
+                let listWithIDs = getListWithIds(sortedList);
+                return listWithIDs;
             });
         yield put({type: "POPULATE_LIST", jsonData: list});
     }
@@ -34,3 +26,25 @@ function* fetchList(action) {
 }
 
 export default populateListSaga;
+
+const getSortedList = (list) => {
+    return list.sort((contact1, contact2) => {
+        let name1 = contact1.general.firstName.toUpperCase();
+        let name2 = contact2.general.firstName.toUpperCase();
+        if (name1 < name2) {
+            return -1;
+          }
+          if (name1 > name2) {
+            return 1;
+          }
+          return 0;
+    });
+}
+
+const getListWithIds = (list) => {
+    var id = 0;
+    return list.map((listItem) => {
+        listItem.id = id++;
+        return listItem;
+    });
+}

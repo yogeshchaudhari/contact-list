@@ -9,9 +9,10 @@ describe("Tests for List Reducer", () => {
     expect(reducer(undefined, {type:"INVALID_ACTION"})).toEqual([]);
   });
 
-  it("Should return contacts list with id when populate list action is dispatched", () => {
+  it("Should return contacts list when contact list is provided to POPULATE LIST", () => {
     let testContactList = [
       {
+        "id": 0,
         "general": {
           "firstName": "Liana",
           "lastName": "Crooks",
@@ -33,6 +34,7 @@ describe("Tests for List Reducer", () => {
         }
       },
       {
+        "id":1,
         "general": {
           "firstName": "Deontae",
           "lastName": "Dare",
@@ -59,7 +61,6 @@ describe("Tests for List Reducer", () => {
     };
 
     let updatedState = reducer(undefined, actionObject);
-    let filteredState = updatedState.filter(contact => contact.id !== undefined);
-    expect(filteredState.length).toEqual(updatedState.length);
+    expect(testContactList).toEqual(updatedState);
   });
 });
