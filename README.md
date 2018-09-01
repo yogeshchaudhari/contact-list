@@ -53,6 +53,9 @@ Whenever a search term is typed, the contacts are filtered and sorted according 
   - Company
   - Email
 
+##  **Redux Reselect**
+Selector is added to the application to perform data manipulation using the Reselect library.
+
 ## **Material UI**
 Contacts list and contact details are rendered using the components provided by Material UI.
 
