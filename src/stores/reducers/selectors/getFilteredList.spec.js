@@ -1,5 +1,4 @@
 import { getFilteredList } from './getFilteredList';
-import { ExpansionPanelActions } from '@material-ui/core';
 
 describe("Get Filtered List Selector", ()=>{
     it('Should return empty array when state has no contacts', ()=>{
