@@ -5,7 +5,7 @@ import List from '@material-ui/core/List';
 import Item from './contactList/Item';
 import SearchBar from './contactList/SearchBar';
 
-import {getFilteredList} from '../stores/reducers';
+import { getFilteredList } from '../stores/reducers/selectors/getFilteredList';
 
 class ContactList extends Component{
     renderContacts = (contacts) => {

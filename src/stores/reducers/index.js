@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import ListReducer, * as fromListReducer from "./listReducer";
+import ListReducer from "./listReducer";
 import SelectReducer from "./selectReducer";
 import SearchReducer from "./searchReducer";
 
@@ -11,6 +11,3 @@ const rootReducer = combineReducers({
 });
 
 export default rootReducer;
-
-export const getFilteredList = (state) =>
-    fromListReducer.getFilteredList(state.contactList, state.searchResult.searchTerm);
